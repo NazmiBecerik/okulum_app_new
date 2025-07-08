@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../routes/app_routes.dart';
 import '../../../core/variables/enums.dart';
@@ -15,6 +16,12 @@ class HomeController extends GetxController {
 
   final Rx<bool> _hasUnreadNotifications = false.obs;
   bool get hasUnreadNotifications => _hasUnreadNotifications.value;
+
+  // PageView controller for modules
+  final PageController pageController = PageController();
+
+  final RxInt _currentPageIndex = 0.obs;
+  int get currentPageIndex => _currentPageIndex.value;
 
   @override
   void onInit() {
@@ -34,6 +41,22 @@ class HomeController extends GetxController {
     });
     super.onInit();
     _checkNotifications();
+  }
+
+  @override
+  void onClose() {
+    pageController.dispose();
+    super.onClose();
+  }
+
+  /// Page değiştiğinde çağrılır
+  void onPageChanged(int index) {
+    _currentPageIndex.value = index;
+  }
+
+  /// Programatik olarak sayfa değiştirme
+  void goToPage(int index) {
+    pageController.animateToPage(index, duration: Duration(milliseconds: 300), curve: Curves.easeInOut);
   }
 
   /// Refresh all home data

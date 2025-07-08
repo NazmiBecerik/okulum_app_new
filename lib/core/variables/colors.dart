@@ -23,7 +23,9 @@ class ColorTable {
   static Color get disabledButtonColor => Colors.grey;
   static Color get directoryButtonColor => const Color.fromARGB(255, 139, 156, 255);
   static Color get getBlackTextColor => Colors.black;
-  static Color primaryColor = const Color.fromARGB(255, 255, 184, 53);
+
+  // 2d67a6 primary color bu renk olsun.
+  static Color primaryColor = const Color.fromARGB(255, 45, 103, 166);
   static Color primaryColorDark = const Color.fromARGB(255, 205, 142, 16);
   static Color primaryColorLight = const Color.fromARGB(31, 255, 220, 145);
   static Color fabButtonColor = const Color.fromARGB(255, 221, 195, 151);

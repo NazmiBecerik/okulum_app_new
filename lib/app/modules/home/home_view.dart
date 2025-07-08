@@ -22,15 +22,19 @@ class HomeView extends GetView<HomeController> {
         child: Column(
           children: [
             // Purple Header Section
-            HomeHeaderWidget(),
+            const HomeHeaderWidget(),
+            SizedBox(height: Utils.highPadding),
 
             // User Card Section
-            Transform.translate(offset: Offset(0, -Utils.extraHighPadding), child: HomeUserCardWidget()),
+            Transform.translate(
+              offset: Offset(0, -Utils.normalPadding), // Overlap'i küçülttük
+              child: const HomeUserCardWidget(),
+            ),
 
             // Modules Grid Section
             Padding(
               padding: EdgeInsets.symmetric(horizontal: Utils.normalPadding),
-              child: HomeModulesGridWidget(),
+              child: const HomeModulesGridWidget(),
             ),
 
             // Bottom spacing

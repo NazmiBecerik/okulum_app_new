@@ -1,7 +1,8 @@
 enum Endpoints {
   phoneLogin,
   passwordLogin,
-  studentLogin;
+  studentLogin,
+  news;
 
   String get path {
     switch (this) {
@@ -11,6 +12,8 @@ enum Endpoints {
         return "myschoolapi/v1/auth/login/password";
       case Endpoints.studentLogin:
         return "myschoolapi/v1/auth/login/student";
+      case Endpoints.news:
+        return "myschoolapi/v1/news/";
     }
   }
 }

@@ -16,19 +16,24 @@ class HomeUserCardWidget extends GetView<UserController> {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: Utils.normalPadding),
+      height: Get.height * 0.10, // Kartı küçülttük
       child: CustomCard(
         backgroundColor: Color(0xFF4FC3F7),
         elevation: 8,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(Utils.normalRadius)),
         child: Padding(
-          padding: EdgeInsets.all(Utils.normalPadding),
+          padding: EdgeInsets.all(Utils.normalPadding * 0.8), // Padding'i biraz küçülttük
           child: Row(
             children: [
               // User Avatar
               CircleAvatar(
-                radius: Utils.extraHighIconSize * 0.8,
+                radius: Utils.normalIconSize, // Küçülttük
                 backgroundColor: Colors.white.withOpacity(0.3),
-                child: Icon(Icons.person, color: Colors.white, size: Utils.normalIconSize),
+                child: Icon(
+                  Icons.person,
+                  color: Colors.white,
+                  size: Utils.lowIconSize, // İkon boyutunu küçülttük
+                ),
               ),
               SizedBox(width: Utils.normalPadding),
 
@@ -36,28 +41,30 @@ class HomeUserCardWidget extends GetView<UserController> {
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CustomText.high(controller.selectedStudent?.name ?? "Nazmi Becerik", textColor: Colors.white, bold: true),
-                    SizedBox(height: Utils.extraLowPadding),
+                    CustomText.high(controller.selectedStudent?.name ?? "Test Öğrenci", textColor: Colors.white, bold: true),
                     Row(
                       children: [
-                        CustomText("Veli", textColor: Colors.white.withOpacity(0.9)),
+                        CustomText.low(
+                          // Text boyutunu küçülttük
+                          "Veli",
+                          textColor: Colors.white.withOpacity(0.9),
+                        ),
                         SizedBox(width: Utils.extraLowPadding),
-                        Icon(Icons.verified, color: Colors.white, size: Utils.lowIconSize),
+                        Icon(
+                          Icons.verified,
+                          color: Colors.white,
+                          size: Utils.extraLowIconSize, // İkon boyutunu küçülttük
+                        ),
                       ],
                     ),
                   ],
                 ),
               ),
 
-              // Action Buttons
-              Column(
-                children: [
-                  profileButton(),
-                  SizedBox(height: Utils.extraLowPadding),
-                  changeButton(),
-                ],
-              ),
+              // Sadece Değiştir Butonu
+              changeButton(),
             ],
           ),
         ),
@@ -65,39 +72,32 @@ class HomeUserCardWidget extends GetView<UserController> {
     );
   }
 
-  Widget profileButton() {
-    return CustomElevatedButton(
-      backgroundColor: Colors.white.withOpacity(0.2),
-      borderRadius: Utils.normalRadius,
-      padding: EdgeInsets.symmetric(horizontal: Utils.normalPadding, vertical: Utils.lowPadding),
-      onPressed: () {
-        // Profile action
-      },
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(Icons.person_outline, color: Colors.white, size: Utils.lowIconSize),
-          SizedBox(width: Utils.extraLowPadding),
-          CustomText.low("Profil", textColor: Colors.white, bold: true),
-        ],
-      ),
-    );
-  }
-
   Widget changeButton() {
     return CustomElevatedButton(
       backgroundColor: Colors.white.withOpacity(0.2),
-      borderRadius: Utils.normalRadius,
-      padding: EdgeInsets.symmetric(horizontal: Utils.normalPadding, vertical: Utils.lowPadding),
+      borderRadius: Utils.lowRadius, // Radius küçülttük
+      padding: EdgeInsets.symmetric(
+        horizontal: Utils.lowPadding, // Padding küçülttük
+        vertical: Utils.extraLowPadding,
+      ),
       onPressed: () {
         // Change student action
       },
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(Icons.swap_horiz, color: Colors.white, size: Utils.lowIconSize),
+          Icon(
+            Icons.swap_horiz,
+            color: Colors.white,
+            size: Utils.extraLowIconSize, // İkon boyutunu küçülttük
+          ),
           SizedBox(width: Utils.extraLowPadding),
-          CustomText.low("Değiştir", textColor: Colors.white, bold: true),
+          CustomText.extraLow(
+            // Text boyutunu küçülttük
+            "Değiştir",
+            textColor: Colors.white,
+            bold: true,
+          ),
         ],
       ),
     );
