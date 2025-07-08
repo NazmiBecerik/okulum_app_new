@@ -11,18 +11,12 @@ class BottomAppBarController extends GetxController {
     final tabbedDashboardPage = tabs[index];
     _tabIndex.value = index;
     if (tabbedDashboardPage == lastDashboardPage) return;
-    Get.offNamedUntil(
-      tabbedDashboardPage,
-      (route) => route.settings.name == tabbedDashboardPage,
-      arguments: arguments,
-    );
+    Get.offNamedUntil(tabbedDashboardPage, (route) => route.settings.name == tabbedDashboardPage, arguments: arguments);
     lastDashboardPage = tabs[index];
   }
 
   final tabs = [
     AppRoutes.home.path,
-    AppRoutes.nearly.path,
-    AppRoutes.chat.path,
-    AppRoutes.favorite.path,
+    AppRoutes.profile.path, // settings yerine profile
   ];
 }

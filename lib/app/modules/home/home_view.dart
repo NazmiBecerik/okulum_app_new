@@ -1,50 +1,43 @@
+// lib/app/modules/home/home_view.dart
+
 import 'package:flutter/material.dart';
-import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
-import '../common/widgets/appbar/home_app_bar.dart';
-import '../common/widgets/buttons/custom_elevated_button.dart';
-import '../common/widgets/textfield/custom_text_form_field.dart';
-import '../common/widgets/textfield/search_field.dart';
-import '../../routes/app_routes.dart';
+import '../common/widgets/other/custom_scaffold.dart';
 import '../../../core/utils/utils.dart';
 import '../../../core/variables/colors.dart';
-import '../../../core/variables/enums.dart';
-
-import '../common/widgets/appbar/default_app_bar.dart';
-
-import '../common/widgets/icons/icon_with_background.dart';
-import '../common/widgets/other/custom_scaffold.dart';
-import '../common/widgets/texts/custom_text.dart';
 import 'home_controller.dart';
+import 'widgets/home_header_widget.dart';
+import 'widgets/home_user_card_widget.dart';
+import 'widgets/home_modules_grid_widget.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      appBar: buildAppBar(),
-      body: SingleChildScrollView(child: Column(children: [
-           
+      backgroundColor: const Color(0xFFF5F7FA),
+      bodyPadding: EdgeInsets.zero,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            // Purple Header Section
+            HomeHeaderWidget(),
+
+            // User Card Section
+            Transform.translate(offset: Offset(0, -Utils.extraHighPadding), child: HomeUserCardWidget()),
+
+            // Modules Grid Section
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: Utils.normalPadding),
+              child: HomeModulesGridWidget(),
+            ),
+
+            // Bottom spacing
+            SizedBox(height: Utils.extraHighPadding * 2),
           ],
-        )),
+        ),
+      ),
     );
   }
-
-  HomeAppBar buildAppBar() {
-    return HomeAppBar(
-      actions: [
-        settingsIcon(),
-        SizedBox(width: Utils.lowPadding),
-      ],
-    );
-  }
-
-  InkWell settingsIcon() => InkWell(
-    onTap: () => controller.settingsOnTap(),
-    child: CircleAvatar(
-      radius: Utils.normalIconSize,
-      backgroundColor: ColorTable.getTextColor.withOpacity(0.03),
-      child: Icon(Icons.settings_outlined, color: ColorTable.getTextColor, size: Utils.normalIconSize),
-    ),
-  );
 }

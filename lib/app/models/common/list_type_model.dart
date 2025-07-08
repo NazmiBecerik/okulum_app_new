@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import '../../core/utils/list_reporsitory.dart';
+import '../../../core/utils/list_reporsitory.dart';
 
 class ListTypeModel<T extends ListRepository> {
   String title;

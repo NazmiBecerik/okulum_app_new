@@ -1,7 +1,11 @@
 enum StorageKeys {
   language,
-  rememberMe,
-  email,
+  phone, // email yerine phone
   password,
-  customStorage;
+  rememberMe,
+  authToken, // yeni
+  currentUser, // yeni
+  selectedStudent, // yeni
+  selectedStudentId, // yeni
+  customStorage,
 }

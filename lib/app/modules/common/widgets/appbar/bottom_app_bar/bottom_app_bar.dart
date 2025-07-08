@@ -21,10 +21,8 @@ class CustomBottomAppBar extends GetView<BottomAppBarController> {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
-            _bottomBarIconButton(iconData: FeatherIcons.home, index: 0, text: "Anasayfa"),
-            _bottomBarIconButton(iconData: Icons.location_city_rounded, index: 1, text: "Yakınlarda"),
-            _bottomBarIconButton(iconData: Icons.chat_bubble_outlined, index: 2, text: "Mesajlarım"),
-            _bottomBarIconButton(iconData: Icons.favorite, index: 3, text: "Beğendiklerim"),
+            _bottomBarIconButton(iconData: FeatherIcons.home, index: 0, text: "Ana Sayfa"),
+            _bottomBarIconButton(iconData: Icons.person_outline, index: 1, text: "Profil"),
           ],
         ),
       ),
@@ -34,13 +32,13 @@ class CustomBottomAppBar extends GetView<BottomAppBarController> {
   SizedBox _bottomBarIconButton({required IconData iconData, required int index, required String text}) {
     return SizedBox(
       height: Utils.bottomBarHeight,
-      width: Get.width * 0.25,
+      width: Get.width * 0.5, // 2 buton olduğu için 0.5
       child: IconButton(
         iconSize: Utils.normalIconSize * 1.25,
         icon: Column(
           children: [
             Icon(iconData, color: controller.tabIndex == index ? Get.theme.primaryColor : ColorTable.getTextColor),
-            //if (controller.tabIndex == index) CustomText(text, textColor: Get.theme.primaryColor)
+            CustomText.extraLow(text, textColor: controller.tabIndex == index ? Get.theme.primaryColor : ColorTable.getTextColor),
           ],
         ),
         onPressed: () {

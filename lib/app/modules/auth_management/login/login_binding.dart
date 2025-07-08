@@ -1,5 +1,6 @@
-import 'package:get/get.dart';
+// lib/app/modules/auth_management/login/login_binding.dart
 
+import 'package:get/get.dart';
 import '../../../repositories/auth_repository.dart';
 import 'login_controller.dart';
 

@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
-import '../../../app/models/general_response.dart';
+import '../../../app/models/common/general_response.dart';
 import '../../utils/getx_extensions.dart';
 
 enum Api { test, live }
@@ -13,13 +13,13 @@ extension ApiExtension on Api {
       case Api.test:
         return "http://localhost:3000/api/v1/";
       case Api.live:
-        return "https://api.salonrandevu.com/api/v1/";
+        return "https://api.ilksms.com/";
     }
   }
 }
 
 class BaseNetworkService extends GetxService {
-  Api _apiSelection = Api.test;
+  Api _apiSelection = Api.live;
 
   Api get apiSelection => _apiSelection;
 
@@ -51,19 +51,21 @@ class BaseNetworkService extends GetxService {
       ),
     );
 
-    dio.interceptors.add(InterceptorsWrapper(
-      onRequest: (options, handler) {
-        // Burada istek yapmadan önce gerekli işlemleri gerçekleştirebilirsiniz.
-        return handler.next(options);
-      },
-      onResponse: (response, handler) {
-        // Burada yanıt geldikten sonra gerekli işlemleri gerçekleştirebilirsiniz.
-        return handler.next(response);
-      },
-      onError: (DioException e, handler) {
-        return handler.next(e);
-      },
-    ));
+    dio.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (options, handler) {
+          // Burada istek yapmadan önce gerekli işlemleri gerçekleştirebilirsiniz.
+          return handler.next(options);
+        },
+        onResponse: (response, handler) {
+          // Burada yanıt geldikten sonra gerekli işlemleri gerçekleştirebilirsiniz.
+          return handler.next(response);
+        },
+        onError: (DioException e, handler) {
+          return handler.next(e);
+        },
+      ),
+    );
     return dio;
   }
 

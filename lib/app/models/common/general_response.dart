@@ -1,4 +1,4 @@
-import '../../core/utils/serializer.dart';
+import '../../../core/utils/serializer.dart';
 
 class GeneralResponse extends BaseModel {
   dynamic data;

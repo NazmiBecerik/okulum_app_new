@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:okulum_app/app/repositories/auth_repository.dart';
 
 import 'app/modules/common/controllers/route_controller.dart';
 import 'app/modules/common/controllers/user_controller.dart';
@@ -31,9 +32,11 @@ Future<void> initApp() async {
   Get.put(CustomStorageService());
   Get.put(RouteController());
   Get.put(BottomAppBarController());
-  Get.put(UserController());
-  Get.put(BaseNetworkService());
   Get.put(LanguageService());
+  Get.put(BaseNetworkService());
+  Get.put(AuthRepository());
+  Get.put(UserController());
+
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   runApp(const MyApp());
 }
